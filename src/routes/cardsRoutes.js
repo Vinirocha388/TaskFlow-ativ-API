@@ -1,5 +1,5 @@
 import express from "express";
-import cardController from "../controllers/cardController.js";
+import taskController from "../controllers/taskController.js";
 
 const cardsRouter = express.Router();
 
