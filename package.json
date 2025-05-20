@@ -1,8 +1,7 @@
 {
-  "name": "teste",
+  "name": "taskflow",
   "version": "1.0.0",
-  "description": "",
-  "license": "MIT",
+  "description": "API de uma plataforma de gerenciamento de projetos que permite que equipes organizem tarefas, acompanhem prazos e colaborem em tempo real",
   "author": "",
   "type": "module",
   "main": "server.js",
