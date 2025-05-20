@@ -14,49 +14,56 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  nickname String @unique
-  email    String @unique
-  password String
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  password  Int
+  name      String
+  role      String
+  avatarUrl String?
+  jobTitle  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Relations
-  records Record[]
+  project Project[]
 
   @@map("users")
 }
 
-model Record {
-  id         String @id @default(cuid())
-  userId     Int
-  score      Int
-  screenShot String
-  gameId     String
+model Project {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  status      String
+  dueDate     DateTime?
+  budget      Float?
+  userId      Int
+  taskId      String
 
   // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  game Game @relation(fields: [gameId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  users User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  tasks Task @relation(fields: [taskId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("records")
+  @@map("project")
 }
 
-model Game {
-  id       String @id @default(cuid())
-  name     String
-  platform String
+model Task {
+  id          String    @id @default(cuid())
+  title       String
+  description String
+  status      String
+  assigneeld  Int?
+  dueDate     DateTime?
 
   // Relations
-  records Record[]
+  project Project[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("games")
+  @@map("tasks")
 }
-
