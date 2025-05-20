@@ -26,7 +26,7 @@ class TaskModel {
     };
   }
 
-  // Criar um novo jogo
+  // Criar uma nova task
   async create(data) {
     const task = await prisma.task.create({
       data,
