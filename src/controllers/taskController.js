@@ -1,4 +1,4 @@
-import TaskModel from "../models/gameModel.js";
+import TaskModel from "../models/taskModel.js";
 
 class TaskController {
   async findAll(req, res) {
