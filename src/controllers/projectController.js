@@ -16,7 +16,7 @@ class ProjectController {
 
   async create(req, res) {
     try {
-      const { name, description,status, userId, gameId } = req.body;
+      const { name, description,status, userId, taskId } = req.body;
 
       // Validação básica
       if (!name || !description ||status || !userId || !taskId) {
@@ -30,14 +30,14 @@ class ProjectController {
         description,
         status,
         userId,
-        gameId,
+        taskId,
       };
 
       const newProject = await ProjectModel.create(data);
 
       return res.status(201).json({
         message: "New project successufully created!",
-        newRecord,
+        newProject,
       });
     } catch (error) {
       console.error("Error creating a new project", error);
