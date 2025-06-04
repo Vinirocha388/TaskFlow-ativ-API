@@ -11,10 +11,10 @@ const router = express.Router();
 
 // Rotas públicas
 router.use("/auth", authRouter);
-router.use("/tasks", taskRouter);
-router.use("/projects", projectRouter);
+
 
 // Rotas protegidas
 router.use(authMiddleware);
-
+router.use("/tasks", taskRouter);
+router.use("/projects", projectRouter);
 export default router;
