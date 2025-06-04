@@ -1,7 +1,15 @@
 import prisma from '../../prisma/client.js';
 
 class UserModel {
-async findAll() {
+async findAll(role) {
+const where = {};
+
+if (role) {
+  where.role = {
+    contains: role
+  }
+}
+
     const users = await prisma.user.findMany();
 
     return users;
