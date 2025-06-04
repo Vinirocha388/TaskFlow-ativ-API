@@ -1,11 +1,13 @@
-# API - TaskFlow 
+# API - TaskFlow
 
 ## 📖 Contextualização
+
 A empresa "TaskFlow" está desenvolvendo uma plataforma de gerenciamento de projetos que permite que equipes organizem tarefas, acompanhem prazos e colaborem em tempo real. Você foi contratado como desenvolvedor back-end para criar uma API que gerenciará o cadastro de usuários, projetos, tarefas e equipes.
 
 A plataforma precisa permitir que gerentes de projeto criem e organizem projetos, definam tarefas com prazos, atribuam responsáveis e acompanhem o progresso. Os membros da equipe devem poder visualizar suas tarefas, atualizar status, adicionar comentários e colaborar com outros membros. O sistema também deve permitir a criação de relatórios de desempenho e o acompanhamento de tempo gasto nas tarefas.
 
 ## 🏹 Desafio
+
 Desenvolver uma API RESTful utilizando Node.js, Express e Prisma que permita:
 
 1. Gerenciar usuários (registro e autenticação)
@@ -13,7 +15,6 @@ Desenvolver uma API RESTful utilizando Node.js, Express e Prisma que permita:
 3. Gerenciar tarefas e subtarefas
 4. Gerenciar comentários e anexos
 5. Implementar funcionalidade de relatórios e dashboards
-
 
 ## 🎯 Habilidades Trabalhadas:
 
@@ -28,7 +29,7 @@ Desenvolver uma API RESTful utilizando Node.js, Express e Prisma que permita:
 
 ## Vamos começar!
 
- ### ✅ Passo 1: Inicializar o projeto
+### ✅ Passo 1: Inicializar o projeto
 
 Crie uma pasta para o projeto e inicialize:
 
@@ -38,28 +39,100 @@ cd taskflow-ativ-api
 npm init
 ```
 
- ### ✅ Passo 2: Instalar dependências
+### ✅ Passo 2: Instalar dependências
 
 ```bash
 npm install express nodemon dotenv
 ```
 
- ### ✅ Passo 3: configurar .env
+### ✅ Passo 3: configurar .env
+
 ```bash
 PORT= porta utilizada
 DATABASE_URL="caminho do banco"
 JWT="senha de proteção"
 ```
 
-
 ### ✅ Passo 4: Regenerar o banco de dados
+
 ```bash
 npx prisma migrate dev
 ```
+#### Ou 
+``` bash
+npx prisma generate
+```
 
 ### ✅ Passo 5: Inicializar o projeto
+
 ```bash
 npm run dev
 ```
 
+## 🚩 Endpoints e requisições
 
+### 🔑 Realizar Login
+
+```bash
+http://localhost:4000/auth/login
+```
+
+#### Json
+
+```Json
+{
+"email" : "",
+"password": "",
+}
+```
+
+### 👤 Registrar Usuário
+
+```bash
+http://localhost:4000/auth/register
+```
+
+#### Json
+
+```json
+{
+"email" : "",
+"password": "",
+"name": "",
+"role":""
+}
+```
+
+### 📆 Projetos
+
+```bash
+http://localhost:4000/projects
+```
+
+#### Json
+
+```json
+{
+"name": "",
+"description": "",
+"status": ""
+}
+```
+
+### 💻Tarefas
+
+```bash
+http://localhost:4000/auth/tasks
+```
+
+#### Json
+
+```json
+{
+"title": "",
+"description":"",
+"status":"",
+"userId":  ,
+"projectId":""
+}
+```
