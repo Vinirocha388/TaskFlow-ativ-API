@@ -2,7 +2,15 @@ import prisma from '../../prisma/client.js';
 
 class ProjectModel {
     // Obter todos os project
-    async findAll() {
+    async findAll(status) {
+const where = {}
+
+if (status) {
+  where.status = {
+    contains: status
+  }
+}
+
       const projects = await prisma.project.findMany();
   
       return {
