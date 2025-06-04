@@ -2,13 +2,13 @@ import TaskModel from "../models/taskModel.js";
 
 class TaskController {
   async findAll(req, res) {
-    const {name, description,status} = req.query;
+    const {title, description,status} = req.query;
     
    // console.log("Nome: ", name);
    // console.log("Plataforma: ", platform);
 
     try {
-      const tasks = await TaskModel.findAll(name, description,status);
+      const tasks = await TaskModel.findAll(title, description,status, userId, projectId);
 
       return res.status(200).json(tasks);
     } catch (error) {
@@ -21,19 +21,21 @@ class TaskController {
 
   async create(req, res) {
     try {
-      const { name, description,status} = req.body;
+      const { title, description,status,userId,projectId} = req.body;
 
       // Validação básica
-      if (!name || !description || !status) {
+      if (!title|| !description || !status || !userId || !projectId) {
         return res.status(400).json({
           error: "Name, description and status fields are required!",
         });
       }
 
       const data = {
-        name,
+        title,
         description,
-        status
+        status,
+        userId,
+        projectId,
       };
 
       const newTask = await TaskModel.create(data);
