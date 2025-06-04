@@ -2,6 +2,7 @@ import ProjectModel from "../models/projectModel.js";
 
 class ProjectController {
   async findAll(req, res) {
+
     try {
       const projects = await ProjectModel.findAll();
 

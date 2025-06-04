@@ -3,12 +3,12 @@ import TaskModel from "../models/taskModel.js";
 class TaskController {
   async findAll(req, res) {
     const {title, description,status} = req.query;
+    const pagina = req.query.pagina || 1;
+    const limite = req.query.limite || 10;
     
-   // console.log("Nome: ", name);
-   // console.log("Plataforma: ", platform);
 
     try {
-      const tasks = await TaskModel.findAll(title, description,status, userId, projectId);
+      const tasks = await TaskModel.findAll(title, description,status, userId, projectId,pagina, limite);
 
       return res.status(200).json(tasks);
     } catch (error) {

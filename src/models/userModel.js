@@ -10,7 +10,7 @@ if (role) {
   }
 }
 
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({where});
 
     return users;
   }

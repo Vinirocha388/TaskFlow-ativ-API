@@ -11,7 +11,8 @@ if (status) {
   }
 }
 
-      const projects = await prisma.project.findMany();
+
+      const projects = await prisma.project.findMany({where});
   
       return {
         total: projects.length,
