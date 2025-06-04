@@ -2,23 +2,23 @@ import prisma from '../../prisma/client.js';
 
 class TaskModel {
   // Obter todas as tasks
-  async findAll(name, role) {
+  async findAll(title, status) {
 
     const where = {};
 
-    if (name) {
-      where.name = {
-        contains: name
+    if (title) {
+      where.title = {
+        contains: title
       };
     }
 
-    if (role) {
-      where.role = {
-        contains: role
+    if (status) {
+      where.status = {
+        contains: status
       };
     }
 
-    const games = await prisma.task.findMany({where});
+    const task = await prisma.task.findMany({where});
 
     return {
       total: task.length,
