@@ -16,7 +16,7 @@ datasource db {
 model User {
   id        Int     @id @default(autoincrement())
   email     String  @unique
-  password  Int
+  password  String
   name      String
   role      String
   avatarUrl String?
@@ -26,9 +26,30 @@ model User {
   updatedAt DateTime @updatedAt
 
   // Relations
-  project Project[]
+  tasks Task[]
 
   @@map("users")
+}
+
+
+  model Task {
+  id          String    @id @default(cuid())
+  title       String
+  description String
+  status      String
+  assigneeld  Int?
+  dueDate     DateTime?
+  userId      Int
+  projectId      String
+
+  // Relations
+  users User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("tasks")
 }
 
 model Project {
@@ -38,32 +59,11 @@ model Project {
   status      String
   dueDate     DateTime?
   budget      Float?
-  userId      Int
-  taskId      String
-
   // Relations
-  users User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  tasks Task @relation(fields: [taskId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  tasks Task[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("project")
-}
-
-model Task {
-  id          String    @id @default(cuid())
-  title       String
-  description String
-  status      String
-  assigneeld  Int?
-  dueDate     DateTime?
-
-  // Relations
-  project Project[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("tasks")
+  @@map("projects")
 }
