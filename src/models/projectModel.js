@@ -6,14 +6,14 @@ class ProjectModel {
       const projects = await prisma.project.findMany();
   
       return {
-        total: projectss.length,
+        total: projects.length,
         projects,
       };
     }
   
     // Criar um novo record
     async create(data) {
-      const record = await prisma.project.create({
+      const project = await prisma.project.create({
         data,
       });
   
