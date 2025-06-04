@@ -16,12 +16,12 @@ class ProjectController {
 
   async create(req, res) {
     try {
-      const { name, description,status, userId, taskId } = req.body;
+      const { name, description,status} = req.body;
 
       // Validação básica
-      if (!name || !description ||status || !userId || !taskId) {
+      if (!name || !description || !status) {
         return res.status(400).json({
-          error: "name, description,status , userId and gameId fields are required!",
+          error: "name, description and status fields are required!",
         });
       }
 
@@ -29,8 +29,6 @@ class ProjectController {
         name,
         description,
         status,
-        userId,
-        taskId,
       };
 
       const newProject = await ProjectModel.create(data);

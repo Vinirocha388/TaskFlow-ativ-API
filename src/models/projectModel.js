@@ -1,7 +1,7 @@
 import prisma from '../../prisma/client.js';
 
 class ProjectModel {
-    // Obter todos os recordes
+    // Obter todos os project
     async findAll() {
       const projects = await prisma.project.findMany();
   
@@ -11,7 +11,7 @@ class ProjectModel {
       };
     }
   
-    // Criar um novo record
+    // Criar um novo projeto
     async create(data) {
       const project = await prisma.project.create({
         data,
